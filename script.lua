@@ -10,7 +10,6 @@ ScreenGui.Name = "IslamUltimateHub"
 ScreenGui.Parent = game:GetService("CoreGui")
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
--- 🔲 زر MENU العائم لفتح وإغلاق القائمة بسهولة على الجوال
 local ToggleBtn = Instance.new("TextButton")
 ToggleBtn.Parent = ScreenGui
 ToggleBtn.Size = UDim2.new(0, 55, 0, 55)
@@ -22,7 +21,6 @@ ToggleBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 ToggleBtn.TextSize = 13
 local ToggleCorner = Instance.new("UICorner") do ToggleCorner.CornerRadius = UDim.new(1, 0) ToggleCorner.Parent = ToggleBtn end
 
--- 💻 الإطار الرئيسي للقائمة بتصميم التدرج الناري لـ ISLAM HUB
 local MainFrame = Instance.new("Frame")
 MainFrame.Parent = ScreenGui
 MainFrame.Position = UDim2.new(0.35, 0, 0.1, 0)
@@ -52,7 +50,6 @@ Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.TextSize = 13
 local TitleCorner = Instance.new("UICorner") do TitleCorner.CornerRadius = UDim.new(0, 14) TitleCorner.Parent = Title end
 
--- دالة سريعة لصنع أزرار التشغيل والإطفاء داخل القائمة
 local function CreateMenuButton(text, pos_y)
     local Btn = Instance.new("TextButton")
     Btn.Parent = MainFrame
@@ -67,14 +64,13 @@ local function CreateMenuButton(text, pos_y)
     return Btn
 end
 
--- إنشاء الأزرار السبعة التكتيكية داخل الواجهة
-local EspBtn = CreateMenuButton("👁️ كشف أماكن الهالة (ESP)", 0.14)
-local AimBtn = CreateMenuButton("🎯 ايم بوت الصدر الموزون", 0.24)
-local TracerBtn = CreateMenuButton("⚡ خطوط الرصاص النيون", 0.34)
-local DamageBtn = CreateMenuButton("💥 أرقام الضرر الطائرة", 0.44)
-local SpeedBtn = CreateMenuButton("👟 السرعة الموزونة الآمنة", 0.54)
-local JumpBtn = CreateMenuButton("🚀 القفز الخفيف المستقر", 0.64)
-local AntiKickBtn = CreateMenuButton("🛡️ حماية السيرفر ضد الطرد", 0.74)
+local EspBtn = CreateMenuButton("👁️ Highlight ESP", 0.14)
+local AimBtn = CreateMenuButton("🎯 Legit Body Lock Aimbot", 0.24)
+local TracerBtn = CreateMenuButton("⚡ Neon Bullet Tracers", 0.34)
+local DamageBtn = CreateMenuButton("💥 Flying Damage Indicators", 0.44)
+local SpeedBtn = CreateMenuButton("👟 Safe Legit WalkSpeed", 0.54)
+local JumpBtn = CreateMenuButton("🚀 Stable Low JumpPower", 0.64)
+local AntiKickBtn = CreateMenuButton("🛡️ Anti-Kick Bypass Protection", 0.74)
 
 local StatusLabel = Instance.new("TextLabel")
 StatusLabel.Parent = MainFrame
@@ -82,13 +78,10 @@ StatusLabel.BackgroundTransparency = 1
 StatusLabel.Position = UDim2.new(0, 0, 0.88, 0)
 StatusLabel.Size = UDim2.new(1, 0, 0, 30)
 StatusLabel.Font = Enum.Font.GothamBold
-StatusLabel.Text = "صُنع خصيصاً لأبو سالم (إسلام) 👑"
+StatusLabel.Text = "Made Specially For Abu Salem 👑"
 StatusLabel.TextColor3 = Color3.fromRGB(255, 215, 0)
 StatusLabel.TextSize = 12
 
--- ==========================================
--- ⚙️ البرمجة والربط الميكانيكي للميزات السبعة
--- ==========================================
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local Camera = workspace.CurrentCamera
@@ -99,7 +92,6 @@ local EspActive, AimActive, TracerActive, DamageActive, SpeedActive, JumpActive,
 
 ToggleBtn.MouseButton1Click:Connect(function() MainFrame.Visible = not MainFrame.Visible end)
 
--- 1. ربط زر كشف الأماكن (ESP)
 local function ApplyIslamESP(player)
     local function CreateHighlight(character)
         if not character or not EspActive then return end
@@ -116,9 +108,10 @@ local function ApplyIslamESP(player)
 end
 
 EspBtn.MouseButton1Click:Connect(function()
+    if not LocalPlayer or not LocalPlayer.Character then return end
     EspActive = not EspActive
     EspBtn.BackgroundColor3 = EspActive and Color3.fromRGB(50, 180, 50) or Color3.fromRGB(220, 50, 50)
-    EspBtn.Text = EspActive and "👁️ كشف أماكن الهالة (ESP): ON" or "👁️ كشف أماكن الهالة (ESP): OFF"
+    EspBtn.Text = EspActive and "👁️ Highlight ESP: ON" or "👁️ Highlight ESP: OFF"
     if EspActive then
         for _, p in pairs(Players:GetPlayers()) do if p ~= LocalPlayer then ApplyIslamESP(p) end end
     else
@@ -126,11 +119,10 @@ EspBtn.MouseButton1Click:Connect(function()
     end
 end)
 
--- 2. ربط زر الايم بوت
 AimBtn.MouseButton1Click:Connect(function()
     AimActive = not AimActive
     AimBtn.BackgroundColor3 = AimActive and Color3.fromRGB(50, 180, 50) or Color3.fromRGB(220, 50, 50)
-    AimBtn.Text = AimActive and "🎯 ايم بوت الصدر الموزون: ON" or "🎯 ايم بوت الصدر الموزون: OFF"
+    AimBtn.Text = AimActive and "🎯 Legit Body Lock Aimbot: ON" or "🎯 Legit Body Lock Aimbot: OFF"
 end)
 
 local function GetClosestEnemyBody()
@@ -152,11 +144,10 @@ local function GetClosestEnemyBody()
     return Target
 end
 
--- 3. ربط بقية الأزرار (الخطوط، الضرر، السرعة، القفز، الحماية)
 TracerBtn.MouseButton1Click:Connect(function()
     TracerActive = not TracerActive
     TracerBtn.BackgroundColor3 = TracerActive and Color3.fromRGB(50, 180, 50) or Color3.fromRGB(220, 50, 50)
-    TracerBtn.Text = TracerActive and "⚡ خطوط الرصاص النيون: ON" or "⚡ خطوط الرصاص النيون: OFF"
+    TracerBtn.Text = TracerActive and "⚡ Neon Bullet Tracers: ON" or "⚡ Neon Bullet Tracers: OFF"
 end)
 
 local function CreateVisualTracer(startPos, endPos)
@@ -170,28 +161,27 @@ end
 DamageBtn.MouseButton1Click:Connect(function()
     DamageActive = not DamageActive
     DamageBtn.BackgroundColor3 = DamageActive and Color3.fromRGB(50, 180, 50) or Color3.fromRGB(220, 50, 50)
-    DamageBtn.Text = DamageActive and "💥 أرقام الضرر الطائرة: ON" or "💥 أرقام الضرر الطائرة: OFF"
+    DamageBtn.Text = DamageActive and "💥 Flying Damage Indicators: ON" or "💥 Flying Damage Indicators: OFF"
 end)
 
 SpeedBtn.MouseButton1Click:Connect(function()
     SpeedActive = not SpeedActive
     SpeedBtn.BackgroundColor3 = SpeedActive and Color3.fromRGB(50, 180, 50) or Color3.fromRGB(220, 50, 50)
-    SpeedBtn.Text = SpeedActive and "👟 السرعة الموزونة الآمنة: ON" or "👟 السرعة الموزونة الآمنة: OFF"
+    SpeedBtn.Text = SpeedActive and "👟 Safe Legit WalkSpeed: ON" or "👟 Safe Legit WalkSpeed: OFF"
 end)
 
 JumpBtn.MouseButton1Click:Connect(function()
     JumpActive = not JumpActive
     JumpBtn.BackgroundColor3 = JumpActive and Color3.fromRGB(50, 180, 50) or Color3.fromRGB(220, 50, 50)
-    JumpBtn.Text = JumpActive and "🚀 القفز الخفيف المستقر: ON" or "🚀 القفز الخفيف المستقر: OFF"
+    JumpBtn.Text = JumpActive and "🚀 Stable Low JumpPower: ON" or "🚀 Stable Low JumpPower: OFF"
 end)
 
 AntiKickBtn.MouseButton1Click:Connect(function()
     AntiKickActive = not AntiKickActive
     AntiKickBtn.BackgroundColor3 = AntiKickActive and Color3.fromRGB(50, 180, 50) or Color3.fromRGB(220, 50, 50)
-    AntiKickBtn.Text = AntiKickActive and "🛡️ حماية السيرفر ضد الطرد: ON" or "🛡️ حماية السيرفر ضد الطرد: OFF"
+    AntiKickBtn.Text = AntiKickActive and "🛡️ Anti-Kick Bypass Protection: ON" or "🛡️ Anti-Kick Bypass Protection: OFF"
 end)
 
--- حلقة التشغيل والمراقبة الفيزيائية اللحظية لكل الميزات
 RunService.RenderStepped:Connect(function()
     if LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass("Humanoid") then
         local Humanoid = LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
@@ -209,3 +199,9 @@ RunService.RenderStepped:Connect(function()
     end
 end)
 
+UserInputService.MouseButton1Down:Connect(function()
+    if TracerActive and LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass("Tool") then
+        local Tool = LocalPlayer.Character:FindFirstChildOfClass("Tool")
+        local Handle = Tool:FindFirstChild("Handle") or Tool:FindFirstChildOfClass("Part")
+        if Handle then
+                
